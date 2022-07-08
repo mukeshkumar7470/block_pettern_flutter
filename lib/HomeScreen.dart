@@ -3,6 +3,8 @@ import 'package:block_pettern_flutter/blocks/internet_blocs/internet_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'cubits/internet_cubit.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
   @override
@@ -15,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: SafeArea(
           child: Center(
-        child: BlocConsumer<InternetBlock, InternetState>(
+        child: BlocConsumer<InternetCubit, InternetState>(
           builder: (context, state) {
             if (state is InternetGainedState) {
               return const Text("Internet Connected !");
@@ -27,13 +29,11 @@ class _HomeScreenState extends State<HomeScreen> {
           },
           listener: (context, state) {
             if (state is InternetGainedState) {
-              debugPrint('yha pr chal rha h  11111');
               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                 content: Text("Internet Connected !"),
                 backgroundColor: Colors.green,
               ),);
             } else if (state is InternetLostState) {
-              debugPrint('yha pr chal rha h  22222');
               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                 content: Text("Internet disconnected !"),
                 backgroundColor: Colors.red,

@@ -13,7 +13,7 @@ class InternetBlock extends Bloc<InternetEvent, InternetState> {
     on<InternetLostEvent>((event, emit) => emit(InternetLostState()));
     on<InternetGainedEvent>((event, emit) => emit(InternetGainedState()));
 
-    _connectivity.onConnectivityChanged.listen((result) => {
+    connectivitySubscription = _connectivity.onConnectivityChanged.listen((result) => {
           if (result == ConnectivityResult.mobile ||
               result == ConnectivityResult.wifi)
             {add(InternetGainedEvent())}
