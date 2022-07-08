@@ -17,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: SafeArea(
           child: Center(
-        child: BlocConsumer<InternetCubit, InternetState>(
+        child: BlocConsumer<InternetBlock, InternetState>(
           builder: (context, state) {
             if (state is InternetGainedState) {
               return const Text("Internet Connected !");
